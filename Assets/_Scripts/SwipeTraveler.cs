@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class SwipeTraveler : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] float speed = 1f;
+    [SerializeField] Transform rotatingBody;
 
     private TouchDetector touchDetector;
     private Vector2 moveDir = Vector2.zero;
@@ -11,7 +12,6 @@ public class SwipeTraveler : MonoBehaviour
     private void Awake()
     {
         touchDetector = TouchDetector.Instance;
-
     }
 
     private void OnEnable()
@@ -28,6 +28,7 @@ public class SwipeTraveler : MonoBehaviour
     private void StartMove(Vector2 direction)
     {
         moveDir = direction;
+        rotatingBody.up = direction;
     }
 
     private void StopMove(Vector2 position)

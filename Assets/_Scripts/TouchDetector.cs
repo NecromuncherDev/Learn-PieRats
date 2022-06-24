@@ -58,17 +58,16 @@ public class TouchDetector : Singleton<TouchDetector>
         if (Vector3.Distance(startPosition, endPosition) >= minDistance &&
             (endTime - startTime <= maxDuration))
         {
-            print("Swipe detected");
             Debug.DrawLine(startPosition, endPosition, Color.red, 5f);
 
             Vector2 direction = (endPosition - startPosition).normalized;
-            print($"Swipe detected: {direction}");
+            //print($"Swipe detected: {direction}");
 
             OnSwipeDetected?.Invoke(direction);
         }
         else if (Vector3.Distance(startPosition, endPosition) <= minDistance)
         {
-            print("Tap detected");
+            //print("Tap detected");
             OnTapDetected?.Invoke(startPosition);
         }
     }
