@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SmoothFollow : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [SerializeField] internal Transform target;
     [SerializeField, Range(0f,5f)] private float dampening;
     
     private Vector2 targetPos, transformPos, newPos;

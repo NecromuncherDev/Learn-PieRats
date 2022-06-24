@@ -486,6 +486,7 @@ GameObject:
   - component: {fileID: 1471462099}
   - component: {fileID: 1471462098}
   - component: {fileID: 1471462100}
+  - component: {fileID: 1471462101}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -533,3 +534,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxDuration: 1
   minDistance: 0.2
+--- !u!114 &1471462101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471462097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b873ca72cf3b949bd9cb76614930d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnOrigin: {fileID: 610464380}
+  maxSpawened: 10
+  spawnMaxRadius: 10
+  spawnMinRadius: 7
+  spawnInterval: 0.2
+  spawnables:
+  - {fileID: 7953263848608225528, guid: 9cdbabe0dfcda414cb58a6144dd798d0, type: 3}
+  - {fileID: 5507846614977910153, guid: 3c34af9c30649404ebd47525083fa88f, type: 3}
+  - {fileID: 8843695095246210818, guid: 3cb81568f0ab10147bd26696225b2471, type: 3}
