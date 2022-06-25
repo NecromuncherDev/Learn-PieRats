@@ -357,7 +357,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305994020}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -589,6 +589,7 @@ MonoBehaviour:
   maxSpawened: 10
   spawnMaxRadius: 10
   spawnMinRadius: 7
+  destroyRadius: 15
   spawnInterval: 3
   spawnables:
   - {fileID: 9110242697078364344, guid: 9cdbabe0dfcda414cb58a6144dd798d0, type: 3}

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class CollectibleSpawnManager : MonoBehaviour
 {
     [SerializeField] private Traveler spawnOrigin;
     [SerializeField] private int maxSpawened;
     [SerializeField] private float spawnMaxRadius;
     [SerializeField] private float spawnMinRadius;
+    [SerializeField] private float destroyRadius;
     [SerializeField] private float spawnInterval;
     [SerializeField] private List<Collectible> spawnables = new List<Collectible>();
 
@@ -64,7 +65,10 @@ public class SpawnManager : MonoBehaviour
     private void Spawn(Collectible obj)
     {
         Vector2 spawnPos = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(spawnMinRadius, spawnMaxRadius);
-        GameObject go = Instantiate(obj.gameObject, spawnOrigin.gameObject.transform.position + (Vector3)spawnPos, Quaternion.identity);
+        GameObject go = Instantiate(obj.gameObject, spawnOrigin.transform.position + (Vector3)spawnPos, Quaternion.identity);
+        Collectible collectible = go.GetComponent<Collectible>();
+        collectible.liveTarget = spawnOrigin.transform;
+        collectible.liveDistance = destroyRadius;
         spawned++;
     }
 }
