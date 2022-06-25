@@ -4,47 +4,67 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private Transform spawnOrigin;
+    [SerializeField] private Traveler spawnOrigin;
     [SerializeField] private int maxSpawened;
     [SerializeField] private float spawnMaxRadius;
     [SerializeField] private float spawnMinRadius;
     [SerializeField] private float spawnInterval;
-    [SerializeField] private List<GameObject> spawnables = new List<GameObject>();
+    [SerializeField] private List<Collectible> spawnables = new List<Collectible>();
 
-    private bool spawning = true;
+    private bool spawning = false;
     private Coroutine spawner;
-    private Queue<Transform> spawned = new Queue<Transform>();
+    private int spawned = 0;
 
-    private void Start()
+    private void OnEnable()
     {
+        spawnOrigin.OnStartMove += EnableSpawning;
+        spawnOrigin.OnStopMove += DisableSpawning;
+        Collectible.OnCollected += RemoveSpawned;
+    }
+
+    private void OnDisable()
+    {
+        spawnOrigin.OnStartMove -= EnableSpawning;
+        spawnOrigin.OnStopMove -= DisableSpawning;
+        Collectible.OnCollected -= RemoveSpawned;
+    }
+
+    private void RemoveSpawned()
+    {
+        spawned--;
+    }
+
+    private void EnableSpawning()
+    {
+        spawning = true;
+        if (spawner != null)
+            spawner = null;
+        
         spawner = StartCoroutine(SpawnFromCollection(spawnables, spawnInterval));
     }
 
+    private void DisableSpawning()
+    {
+        spawning = false;
+    }
 
-    private IEnumerator SpawnFromCollection(List<GameObject> spawnables, float interval)
+    private IEnumerator SpawnFromCollection(List<Collectible> spawnables, float interval)
     {
         while (spawning)
         {
-            if ((spawned.Count < maxSpawened))
+            yield return new WaitForSeconds(interval);
+
+            if ((spawned < maxSpawened))
                 Spawn(spawnables[Random.Range(0, spawnables.Count)]);
             else
-                Relocate(spawned.Dequeue());
-
-            yield return new WaitForSeconds(interval);
+                DisableSpawning();
         }
     }
 
-    private void Spawn(GameObject obj)
+    private void Spawn(Collectible obj)
     {
         Vector2 spawnPos = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(spawnMinRadius, spawnMaxRadius);
-        GameObject go = Instantiate(obj, spawnOrigin.position + (Vector3)spawnPos, Quaternion.identity);
-        spawned.Enqueue(go.transform);
-    }
-
-    private void Relocate(Transform obj)
-    {
-        Vector2 spawnPos = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(spawnMinRadius, spawnMaxRadius);
-        obj.position = spawnPos;
-        spawned.Enqueue(obj);
+        GameObject go = Instantiate(obj.gameObject, spawnOrigin.gameObject.transform.position + (Vector3)spawnPos, Quaternion.identity);
+        spawned++;
     }
 }

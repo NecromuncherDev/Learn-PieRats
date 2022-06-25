@@ -1,11 +1,8 @@
 using System;
 using UnityEngine;
 
-public class SwipeTraveler : MonoBehaviour
+public class SwipeTraveler : Traveler
 {
-    [SerializeField] float speed = 1f;
-    [SerializeField] Transform rotatingBody;
-
     private TouchDetector touchDetector;
     private Vector2 moveDir = Vector2.zero;
 
@@ -25,20 +22,23 @@ public class SwipeTraveler : MonoBehaviour
         touchDetector.OnSwipeDetected -= StartMove;
         touchDetector.OnTapDetected -= StopMove;
     }
-    private void StartMove(Vector2 direction)
-    {
-        moveDir = direction;
-        rotatingBody.up = direction;
-    }
-
-    private void StopMove(Vector2 position)
-    {
-        moveDir = Vector2.zero;
-    }
 
     private void Update()
     {
         if (moveDir != Vector2.zero)
             transform.Translate(moveDir * speed * Time.deltaTime);
+    }
+
+    protected override void StartMove(Vector2 direction)
+    {
+        base.StartMove(direction);
+        moveDir = direction;
+        rotatingBody.up = direction;
+    }
+
+    protected override void StopMove(Vector2 direction)
+    {
+        base.StopMove(direction);
+        moveDir = Vector2.zero;
     }
 }

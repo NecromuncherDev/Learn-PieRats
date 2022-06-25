@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4774052976316411133}
   - component: {fileID: 7100820809928170466}
-  m_Layer: 0
+  - component: {fileID: -218070718545045563}
+  - component: {fileID: -2715006663700347932}
+  m_Layer: 7
   m_Name: Collectible_PieRat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,3 +84,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-218070718545045563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507846614977910153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a422a7fc55ea814a8ca6ac8456aee86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &-2715006663700347932
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507846614977910153}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
