@@ -478,6 +478,8 @@ GameObject:
   m_Component:
   - component: {fileID: 610464380}
   - component: {fileID: 610464378}
+  - component: {fileID: 610464381}
+  - component: {fileID: 610464379}
   m_Layer: 6
   m_Name: Ship
   m_TagString: Untagged
@@ -499,6 +501,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rotatingBody: {fileID: 305994021}
+--- !u!114 &610464379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610464377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af9cc68eed766242b91ca6593e95616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &610464380
 Transform:
   m_ObjectHideFlags: 0
@@ -514,6 +528,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610464381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610464377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dfb2182f6d729a48af19845fa2228c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1471462097
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +618,6 @@ MonoBehaviour:
   destroyRadius: 15
   spawnInterval: 3
   spawnables:
-  - {fileID: 9110242697078364344, guid: 9cdbabe0dfcda414cb58a6144dd798d0, type: 3}
-  - {fileID: -218070718545045563, guid: 3c34af9c30649404ebd47525083fa88f, type: 3}
-  - {fileID: -7027028066473735673, guid: 3cb81568f0ab10147bd26696225b2471, type: 3}
+  - {fileID: -6541543128015877860, guid: 9cdbabe0dfcda414cb58a6144dd798d0, type: 3}
+  - {fileID: 4589179465124609039, guid: 3c34af9c30649404ebd47525083fa88f, type: 3}
+  - {fileID: -3200499540116803976, guid: 3cb81568f0ab10147bd26696225b2471, type: 3}

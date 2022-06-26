@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectibleSpawnManager : MonoBehaviour
+public class CollectibleSpawnManager : MonoBehaviour // TODO: Generalized to "Spawner" class with inherited collectibleSpawner etc.
 {
     [SerializeField] private Traveler spawnOrigin;
     [SerializeField] private int maxSpawened;
@@ -20,18 +20,17 @@ public class CollectibleSpawnManager : MonoBehaviour
     {
         spawnOrigin.OnStartMove += EnableSpawning;
         spawnOrigin.OnStopMove += DisableSpawning;
-        Collectible.OnCollected += RemoveSpawned;
     }
 
     private void OnDisable()
     {
         spawnOrigin.OnStartMove -= EnableSpawning;
         spawnOrigin.OnStopMove -= DisableSpawning;
-        Collectible.OnCollected -= RemoveSpawned;
     }
 
-    private void RemoveSpawned()
+    private void RemoveSpawned(Collectible collectible)
     {
+        collectible.OnDestroyed -= RemoveSpawned;
         spawned--;
     }
 
@@ -65,10 +64,11 @@ public class CollectibleSpawnManager : MonoBehaviour
     private void Spawn(Collectible obj)
     {
         Vector2 spawnPos = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * Random.Range(spawnMinRadius, spawnMaxRadius);
-        GameObject go = Instantiate(obj.gameObject, spawnOrigin.transform.position + (Vector3)spawnPos, Quaternion.identity);
+        Collectible go = Instantiate(obj, spawnOrigin.transform.position + (Vector3)spawnPos, Quaternion.identity);
         Collectible collectible = go.GetComponent<Collectible>();
         collectible.liveTarget = spawnOrigin.transform;
         collectible.liveDistance = destroyRadius;
+        collectible.OnDestroyed += RemoveSpawned;
         spawned++;
     }
 }
