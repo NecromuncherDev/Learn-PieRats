@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Collectible : MonoBehaviour
+public class Collectible : MonoBehaviour, ISpawnable
 {
     public event Action<Collectible> OnCollected;
-    public event Action<Collectible> OnDestroyed;
+    public event Action<ISpawnable> OnSpawned;
+    public event Action<ISpawnable> OnDestroyed;
 
     protected internal float liveDistance;
     protected internal Transform liveTarget;
