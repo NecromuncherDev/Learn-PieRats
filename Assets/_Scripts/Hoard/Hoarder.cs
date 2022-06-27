@@ -5,8 +5,7 @@ public class Hoarder : MonoBehaviour
 {
     public event Action OnHoardEmpty;
     public event Action<int> OnHoardValueChanged;
-
-
+    
     private int hoard;
 
     public int Hoard

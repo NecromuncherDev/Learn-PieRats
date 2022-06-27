@@ -30,14 +30,14 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ISpawnable
 
     private void AddSpawned(ISpawnable obj)
     {
-        print($"Object of type {obj.GetType()} has been spawned");
+        //print($"Object of type {obj.GetType()} has been spawned");
         obj.OnDestroyed += RemoveSpawned;
         spawned++;
     }
 
     private void RemoveSpawned(ISpawnable obj)
     {
-        print($"Object of type {obj.GetType()} has been removed");
+        //print($"Object of type {obj.GetType()} has been removed");
         obj.OnDestroyed -= RemoveSpawned;
         spawned--;
     }
@@ -45,15 +45,15 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ISpawnable
     private void EnableSpawning()
     {
         spawning = true;
-        if (spawner != null)
-            spawner = null;
 
-        spawner = StartCoroutine(SpawnFromCollection(spawnables, spawnInterval));
+        if (spawner == null)
+            spawner = StartCoroutine(SpawnFromCollection(spawnables, spawnInterval));
     }
 
     private void DisableSpawning()
     {
         spawning = false;
+        StopCoroutine(spawner);
     }
 
     private IEnumerator SpawnFromCollection(List<T> spawnables, float interval)
