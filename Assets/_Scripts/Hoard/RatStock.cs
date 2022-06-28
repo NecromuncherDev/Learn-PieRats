@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RatHoarder : Hoarder
+public class RatStock : Stock
 {
     private void OnEnable()
     {
@@ -16,6 +16,6 @@ public class RatHoarder : Hoarder
 
     private void AddRat()
     {
-        Hoard++;
+        Add(1);
     }
 }

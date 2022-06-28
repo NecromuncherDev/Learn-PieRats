@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PieHoarder), typeof(RatHoarder), typeof(Traveler))]
+[RequireComponent(typeof(PieStock), typeof(RatStock), typeof(Traveler))]
 public class PieRatShip : MonoBehaviour
 {
-    private RatHoarder crew;
-    private PieHoarder stock;
+    private RatStock crew;
+    private PieStock stock;
 
     private void Awake()
     {
-        TryGetComponent<RatHoarder>(out crew);
-        TryGetComponent<PieHoarder>(out stock);
+        TryGetComponent<RatStock>(out crew);
+        TryGetComponent<PieStock>(out stock);
     }
 }

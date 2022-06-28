@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PieRatShip), typeof(Collider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class WarMonger : MonoBehaviour
 {
     public static event Action<WarMonger, WarMonger> OnWarDeclared;

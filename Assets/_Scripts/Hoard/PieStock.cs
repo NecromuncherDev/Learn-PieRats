@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PieHoarder : Hoarder
+public class PieStock : Stock
 {
     private void OnEnable()
     {
@@ -16,6 +16,6 @@ public class PieHoarder : Hoarder
 
     private void AddPies(int pies)
     {
-        Hoard += pies;
+        Add((uint)Mathf.Max(0, pies));
     }
 }
