@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PieHoarder)), RequireComponent(typeof(RatHoarder)), RequireComponent(typeof(Traveler))]
-public class EnemyShip : MonoBehaviour
+[RequireComponent(typeof(PieHoarder), typeof(RatHoarder), typeof(Traveler))]
+public class PieRatShip : MonoBehaviour
 {
     private RatHoarder crew;
     private PieHoarder stock;
