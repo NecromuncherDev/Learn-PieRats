@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectibleRat : Collectible
 {
-    public static Action OnCollectedRat;
+    public static Action<Transform> OnCollectedRat;
     private float floatTime;
 
     private void Start()
@@ -13,9 +13,9 @@ public class CollectibleRat : Collectible
         Destroy(gameObject, floatTime);
     }
 
-    protected override void GetCollected()
+    protected override void GetCollected(Transform collector)
     {
-        OnCollectedRat?.Invoke();
-        base.GetCollected();
+        OnCollectedRat?.Invoke(collector);
+        base.GetCollected(collector);
     }
 }

@@ -14,8 +14,9 @@ public class RatStock : Stock
         CollectibleRat.OnCollectedRat -= AddRat;
     }
 
-    private void AddRat()
+    private void AddRat(Transform collector)
     {
-        Add(1);
+        if (transform == collector.parent)
+            Add(1);
     }
 }

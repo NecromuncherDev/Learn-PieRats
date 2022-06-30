@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CollectiblePieRat : CollectiblePie
 {
-    protected override void GetCollected()
+    protected override void GetCollected(Transform collector)
     {
-        CollectibleRat.OnCollectedRat?.Invoke();
-        base.GetCollected();
+        CollectibleRat.OnCollectedRat?.Invoke(collector);
+        base.GetCollected(collector);
     }
 }

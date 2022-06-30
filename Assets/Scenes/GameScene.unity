@@ -479,7 +479,6 @@ GameObject:
   - component: {fileID: 610464380}
   - component: {fileID: 610464378}
   - component: {fileID: 610464381}
-  - component: {fileID: 610464379}
   - component: {fileID: 610464382}
   - component: {fileID: 610464383}
   - component: {fileID: 610464384}
@@ -505,18 +504,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rotatingBody: {fileID: 305994021}
---- !u!114 &610464379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610464377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af9cc68eed766242b91ca6593e95616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &610464380
 Transform:
   m_ObjectHideFlags: 0
@@ -556,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1f781bcdee354f95cfdc84920402c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggressionRange: 3
+  aggressionRange: 2
   aggressionLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -573,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b61df9ab834644ba53fb7126c5adf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 0}
-  crewPrefab: {fileID: 0}
+  ammoPrefab: {fileID: 3291313340728398885, guid: 96a709558fb322e4c8c9c8e6881682c8, type: 3}
+  crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
 --- !u!114 &610464384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,6 +685,6 @@ MonoBehaviour:
   spawnMaxRadius: 20
   spawnMinRadius: 10
   destroyRadius: 30
-  spawnInterval: 15
+  spawnInterval: 10
   spawnables:
   - {fileID: 3225275813037930587, guid: 0b8d66a08c654254e9aeb624dfc6bdd7, type: 3}

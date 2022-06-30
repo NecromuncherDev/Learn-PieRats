@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Collectible : MonoBehaviour, ISpawnable
 {
-    public event Action<Collectible> OnCollected;
+    public event Action<Collectible, Transform> OnCollected;
     public event Action<ISpawnable> OnSpawned;
     public event Action<ISpawnable> OnDestroyed;
 
@@ -14,7 +14,7 @@ public class Collectible : MonoBehaviour, ISpawnable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GetCollected();
+        GetCollected(collision.transform);
     }
 
     private void FixedUpdate()
@@ -28,9 +28,10 @@ public class Collectible : MonoBehaviour, ISpawnable
         OnDestroyed?.Invoke(this);
     }
 
-    protected virtual void GetCollected()
+    protected virtual void GetCollected(Transform collector)
     {
-        OnCollected?.Invoke(this);
+        print($"{collector.name} collected {gameObject.name}");
+        OnCollected?.Invoke(this, collector);
         Destroy(gameObject);
     }
 }

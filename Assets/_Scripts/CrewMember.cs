@@ -5,8 +5,8 @@ using UnityEngine;
 public class CrewMember : MonoBehaviour, IDamageable
 {
     public event Action<GameObject> OnDefeated;
-    public uint maxHP { get => maxHP; set => maxHP = value; }
-    public uint curHP { get => curHP; set => curHP = (uint)Mathf.Min(value, maxHP); }
+    public uint maxHP { get => _maxHP; set => _maxHP = value; }
+    public uint curHP { get => _curHP; set => _curHP = (uint)Mathf.Min(value, maxHP); }
 
     [SerializeField] private float attackInterval;
 
@@ -14,6 +14,7 @@ public class CrewMember : MonoBehaviour, IDamageable
     private Vector2 target;
     private bool attacking = false;
     private Coroutine attackCoroutine;
+    private uint _maxHP, _curHP;
 
     internal void Init(Projectile ammo)
     {

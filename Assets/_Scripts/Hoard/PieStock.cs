@@ -14,8 +14,9 @@ public class PieStock : Stock
         CollectiblePie.OnCollectedPies -= AddPies;
     }
 
-    private void AddPies(int pies)
+    private void AddPies(int pies, Transform collector)
     {
-        Add((uint)Mathf.Max(0, pies));
+        if (transform == collector.parent)
+            Add((uint)Mathf.Max(0, pies));
     }
 }

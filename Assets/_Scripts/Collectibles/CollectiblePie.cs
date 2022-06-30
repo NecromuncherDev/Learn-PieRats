@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectiblePie : Collectible
 {
-    public static Action<int> OnCollectedPies;
+    public static Action<int, Transform> OnCollectedPies;
     protected int pies;
 
     private void Awake()
@@ -12,9 +12,9 @@ public class CollectiblePie : Collectible
         pies = UnityEngine.Random.Range(1, 5); // TODO: Change hardcoded values
     }
 
-    protected override void GetCollected()
+    protected override void GetCollected(Transform collector)
     {
-        OnCollectedPies?.Invoke(pies);
-        base.GetCollected();
+        OnCollectedPies?.Invoke(pies, collector);
+        base.GetCollected(collector);
     }
 }

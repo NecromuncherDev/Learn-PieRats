@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,7 +47,12 @@ public class PieRatShip : MonoBehaviour
     {
         while (newSize > members.Count)
         {
-            CrewMember member = Instantiate(crewPrefab, transform.position, Quaternion.identity, transform);
+            Vector3 offset = new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+
+            CrewMember member = Instantiate(crewPrefab, 
+                                            transform.position + offset, 
+                                            Quaternion.identity, 
+                                            transform);
             member.Init(ammoPrefab);
             member.OnDefeated += RemoveCrewMember;
             members.Add(member);
