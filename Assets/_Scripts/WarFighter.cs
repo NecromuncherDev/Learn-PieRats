@@ -5,32 +5,23 @@ using UnityEngine;
 
 public class WarFighter : MonoBehaviour
 {
-    [SerializeField] private Projectile ammoPrefab;
-    [SerializeField] private CrewMember crewPrefab;
-
-    private WarMonger commander;
-    private PieStock ammo;
-    private RatStock attackers;
-    private List<CrewMember> crew = new List<CrewMember>();
+    internal event Action OnJoinedWar;
 
     private void OnEnable()
     {
-        attackers.OnStockValueChanged += ModifyCrew;
+        WarMonger.OnWarAccepted += CheckForWar;
     }
 
-    private void ModifyCrew(int newSize)
+    private void OnDisable()
     {
-        while(newSize > crew.Count)
+        WarMonger.OnWarAccepted -= CheckForWar;
+    }
+
+    private void CheckForWar(WarMonger ship1, WarMonger ship2)
+    {
+        if (ship1.gameObject == gameObject || ship2.gameObject == gameObject)
         {
-            CrewMember member = Instantiate(crewPrefab, transform.position, Quaternion.identity, transform);
-            member.Init(ammoPrefab);
-            member.OnDefeated += RemoveCrewMember;
-            crew.Add(member);
+            OnJoinedWar?.Invoke();
         }
-    }
-
-    private void RemoveCrewMember(IDamageable member)
-    {
-        attackers.TryTake(1);
     }
 }

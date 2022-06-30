@@ -46,8 +46,10 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour, ISpawnable
     {
         spawning = true;
 
-        if (spawner == null)
-            spawner = StartCoroutine(SpawnFromCollection(spawnables, spawnInterval));
+        if (spawner != null)
+            StopCoroutine(spawner);
+
+        spawner = StartCoroutine(SpawnFromCollection(spawnables, spawnInterval));
     }
 
     private void DisableSpawning()

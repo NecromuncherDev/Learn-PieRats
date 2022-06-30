@@ -21,4 +21,16 @@ public class SwipeTraveler : Traveler
         touchDetector.OnSwipeDetected -= StartMove;
         touchDetector.OnTapDetected -= StopMove;
     }
+
+    protected internal override void Halt()
+    {
+        base.Halt();
+        touchDetector.OnSwipeDetected -= StartMove;
+    }
+
+    protected internal override void Resume()
+    {
+        base.Resume();
+        touchDetector.OnSwipeDetected += StartMove;
+    }
 }

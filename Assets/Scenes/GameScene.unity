@@ -482,6 +482,8 @@ GameObject:
   - component: {fileID: 610464379}
   - component: {fileID: 610464382}
   - component: {fileID: 610464383}
+  - component: {fileID: 610464384}
+  - component: {fileID: 610464385}
   m_Layer: 6
   m_Name: Ship
   m_TagString: Untagged
@@ -501,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e1346e5fefd640a505e594daa7981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
   rotatingBody: {fileID: 305994021}
 --- !u!114 &610464379
 MonoBehaviour:
@@ -554,7 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1f781bcdee354f95cfdc84920402c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggressionRange: 5
+  aggressionRange: 3
   aggressionLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -569,6 +571,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3b61df9ab834644ba53fb7126c5adf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoPrefab: {fileID: 0}
+  crewPrefab: {fileID: 0}
+--- !u!114 &610464384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610464377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb903e496c427204f892b876e2a48393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &610464385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610464377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c9fcb9dcf8c8b46816dd5a62648b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1471462097
@@ -670,6 +698,6 @@ MonoBehaviour:
   spawnMaxRadius: 20
   spawnMinRadius: 10
   destroyRadius: 30
-  spawnInterval: 1
+  spawnInterval: 15
   spawnables:
   - {fileID: 3225275813037930587, guid: 0b8d66a08c654254e9aeb624dfc6bdd7, type: 3}

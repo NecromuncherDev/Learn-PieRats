@@ -13,15 +13,31 @@ public class Traveler : MonoBehaviour
 
     protected Vector2 moveDir = Vector2.zero;
 
+    private Vector2 lastMoveDir = Vector2.zero;
+
+    protected virtual internal void Halt()
+    {
+        if (moveDir != Vector2.zero)
+            StopMove(Vector2.zero);
+    }
+
+    protected virtual internal void Resume()
+    {
+        if (moveDir == Vector2.zero)
+            StartMove(lastMoveDir);
+    }
+
     protected virtual void StartMove(Vector2 direction)
     {
         OnStartMove?.Invoke();
         moveDir = direction.normalized;
         rotatingBody.up = moveDir;
     }
+
     protected virtual void StopMove(Vector2 direction)
     {
         OnStopMove?.Invoke();
+        lastMoveDir = moveDir;
         moveDir = Vector2.zero;
     }
 

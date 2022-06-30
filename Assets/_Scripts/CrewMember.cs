@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrewMember : MonoBehaviour, IDamageable
 {
-    public event Action<IDamageable> OnDefeated;
+    public event Action<GameObject> OnDefeated;
     public uint maxHP { get => maxHP; set => maxHP = value; }
     public uint curHP { get => curHP; set => curHP = (uint)Mathf.Min(value, maxHP); }
 
@@ -60,6 +60,6 @@ public class CrewMember : MonoBehaviour, IDamageable
         curHP -= damage;
 
         if (curHP == 0)
-            OnDefeated?.Invoke(this);
+            OnDefeated?.Invoke(gameObject);
     }
 }
