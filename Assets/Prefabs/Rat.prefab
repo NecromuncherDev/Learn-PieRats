@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 1
+  throwSpeed: 1
 --- !u!70 &-8232696610316143974
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

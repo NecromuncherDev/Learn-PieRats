@@ -12,7 +12,7 @@ public class WarMonger : MonoBehaviour
     [SerializeField] private float aggressionRange;
     [SerializeField] private LayerMask aggressionLayer;
     [SerializeField] private bool aggressive = false;
-
+    
     private RaycastHit2D enemyTarget;
     private WarMonger enemy;
 

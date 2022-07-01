@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,21 +8,38 @@ using UnityEngine;
 [RequireComponent(typeof(WarFighter))]
 public class PieRatShip : MonoBehaviour
 {
+    [SerializeField] protected uint startingAmmo;
+    [SerializeField] protected uint startingCrew;
+
     [SerializeField] private Projectile ammoPrefab;
     [SerializeField] private CrewMember crewPrefab;
+    [SerializeField] private float barrageInterval;
 
     private RatStock crew;
-    private PieStock stock;
+    private PieStock ammo;
     private Traveler traveler;
     private WarFighter fighter;
     private List<CrewMember> members = new List<CrewMember>();
+    private bool attacking = false;
+    private Coroutine attackCoroutine;
 
     private void Awake()
     {
         TryGetComponent<RatStock>(out crew);
-        TryGetComponent<PieStock>(out stock);
+        TryGetComponent<PieStock>(out ammo);
         TryGetComponent<Traveler>(out traveler);
         TryGetComponent<WarFighter>(out fighter);
+    }
+
+    private void Start()
+    {
+        Initialize();
+    }
+
+    protected virtual void Initialize()
+    {
+        ammo.Add(startingAmmo);
+        crew.Add(startingCrew);
     }
 
     private void OnEnable()
@@ -38,9 +56,57 @@ public class PieRatShip : MonoBehaviour
         fighter.OnJoinedWar -= StartWar;
     }
 
-    private void StartWar()
+    private void StartWar(WarMonger monger)
     {
         traveler.Halt();
+
+        PieRatShip enemy;
+        if (monger.gameObject.TryGetComponent<PieRatShip>(out enemy))
+            AttackOnce(enemy);
+        else
+            StopWar();
+    }
+
+    private void StopWar()
+    {
+        traveler.Resume();
+        StopAttacking();
+    }
+
+    private void StartAttacking(PieRatShip enemy)
+    {
+        attacking = true;
+
+        if (attackCoroutine != null)
+            attackCoroutine = null;
+
+        attackCoroutine = StartCoroutine(Barrage(enemy, ammo));
+    }
+
+    private IEnumerator Barrage(PieRatShip enemy, Stock ammoStock)
+    {
+        while (attacking)
+        {
+            AttackOnce(enemy);
+            yield return new WaitForSeconds(barrageInterval);
+        }
+    }
+
+    private void AttackOnce(PieRatShip enemy)
+    {
+        foreach (CrewMember member in members)
+            member.LaunchProjectile(enemy.GetRandomCrewMember(), ammo);
+    }
+
+    private void StopAttacking()
+    {
+        attacking = false;
+        StopCoroutine(attackCoroutine);
+    }
+
+    internal Vector2 GetRandomCrewMember()
+    {
+        return members[Random.Range(0, members.Count)].transform.position;
     }
 
     internal void ModifyCrew(int newSize)
@@ -63,16 +129,18 @@ public class PieRatShip : MonoBehaviour
     {
         if (crew.TryTake(1) == 1)
         {
+            member.GetComponent<CrewMember>().OnDefeated -= RemoveCrewMember;
             members.Remove(member.GetComponent<CrewMember>());
         }
     }
+
     private void Lose()
     {
-        foreach (CrewMember member in members)
-        {
-            members.Remove(member);
-            Destroy(member.gameObject);
-        }
+        //foreach (CrewMember member in members)
+        //{
+        //    members.Remove(member);
+        //    Destroy(member.gameObject);
+        //}
 
         Destroy(gameObject);
     }

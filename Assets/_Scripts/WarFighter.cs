@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WarFighter : MonoBehaviour
 {
-    internal event Action OnJoinedWar;
+    internal event Action<WarMonger> OnJoinedWar;
 
     private void OnEnable()
     {
@@ -21,7 +21,8 @@ public class WarFighter : MonoBehaviour
     {
         if (ship1.gameObject == gameObject || ship2.gameObject == gameObject)
         {
-            OnJoinedWar?.Invoke();
+            OnJoinedWar?.Invoke(ship1.gameObject == gameObject ? ship2 : ship1);
+            print($"{gameObject.name} has joined the war!");
         }
     }
 }

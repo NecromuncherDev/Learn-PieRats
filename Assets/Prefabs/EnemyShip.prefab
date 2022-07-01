@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3225275813037930586}
   - component: {fileID: 3225275813037930587}
   - component: {fileID: -6676947518624377351}
-  - component: {fileID: -598973181749313661}
+  - component: {fileID: 2290392909200222039}
   - component: {fileID: 1733242123379238028}
   - component: {fileID: 1454778218706334932}
   - component: {fileID: 7373210116040958909}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfb2182f6d729a48af19845fa2228c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-598973181749313661
+--- !u!114 &2290392909200222039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,11 +74,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3225275813037930588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b61df9ab834644ba53fb7126c5adf4, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b337666db295d74499c22544ebf906e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingAmmo: 10
+  startingCrew: 5
   ammoPrefab: {fileID: 3291313340728398885, guid: f14a8e6bea303cb499136c544e603468, type: 3}
   crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
+  barrageInterval: 2.5
+  startingAmmoVariation: 25
+  startingCrewVariation: 50
 --- !u!114 &1733242123379238028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1f781bcdee354f95cfdc84920402c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggressionRange: 2
+  aggressionRange: 1
   aggressionLayer:
     serializedVersion: 2
     m_Bits: 256

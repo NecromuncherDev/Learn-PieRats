@@ -19,6 +19,8 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator FlyToTarget(Vector2 target)
     {
+        print($"Projectile at pos {transform.position} flying towards pos {target} at speed {speed}");
+
         while (Vector2.Distance(transform.position, target) > 0.01f)
         {
             transform.Translate((target - (Vector2)transform.position).normalized * speed * Time.deltaTime);
@@ -36,11 +38,15 @@ public class Projectile : MonoBehaviour
         if (membersHit.Length == 0) return;
 
         RaycastHit2D targetHit = membersHit.Where(x => x.transform.gameObject.GetComponent<IDamageable>() != null).FirstOrDefault();
-        IDamageable damageableHit;
 
-        if (targetHit.transform.gameObject.TryGetComponent<IDamageable>(out damageableHit))
+        if (targetHit.transform != null)
         {
-            damageableHit.TakeDamage(damage);
+            IDamageable damageableHit;
+            if (targetHit.transform.gameObject.TryGetComponent<IDamageable>(out damageableHit))
+            {
+                if (damageableHit != null)
+                    damageableHit.TakeDamage(damage);
+            }
         }
     }
 }

@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e1346e5fefd640a505e594daa7981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 1.5
   rotatingBody: {fileID: 305994021}
 --- !u!4 &610464380
 Transform:
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f1f781bcdee354f95cfdc84920402c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aggressionRange: 2
+  aggressionRange: 1.5
   aggressionLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -560,8 +560,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b61df9ab834644ba53fb7126c5adf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingAmmo: 10
+  startingCrew: 1
   ammoPrefab: {fileID: 3291313340728398885, guid: 96a709558fb322e4c8c9c8e6881682c8, type: 3}
   crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
+  barrageInterval: 2
 --- !u!114 &610464384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +666,7 @@ MonoBehaviour:
   spawnMaxRadius: 10
   spawnMinRadius: 7
   destroyRadius: 15
-  spawnInterval: 3
+  spawnInterval: 1.5
   spawnables:
   - {fileID: -6541543128015877860, guid: 9cdbabe0dfcda414cb58a6144dd798d0, type: 3}
   - {fileID: 4589179465124609039, guid: 3c34af9c30649404ebd47525083fa88f, type: 3}
@@ -685,6 +688,6 @@ MonoBehaviour:
   spawnMaxRadius: 20
   spawnMinRadius: 10
   destroyRadius: 30
-  spawnInterval: 10
+  spawnInterval: 5
   spawnables:
   - {fileID: 3225275813037930587, guid: 0b8d66a08c654254e9aeb624dfc6bdd7, type: 3}
