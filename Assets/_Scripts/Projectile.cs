@@ -10,8 +10,6 @@ public class Projectile : MonoBehaviour
 
     internal float speed;
 
-    private bool initialized;
-
     internal void Launch(Vector2 target)
     {
         StartCoroutine(FlyToTarget(target));
@@ -19,8 +17,6 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator FlyToTarget(Vector2 target)
     {
-        print($"Projectile at pos {transform.position} flying towards pos {target} at speed {speed}");
-
         while (Vector2.Distance(transform.position, target) > 0.01f)
         {
             transform.Translate((target - (Vector2)transform.position).normalized * speed * Time.deltaTime);
@@ -33,7 +29,8 @@ public class Projectile : MonoBehaviour
     private void CheckHit()
     {
         RaycastHit2D[] membersHit;
-        membersHit = Physics2D.CircleCastAll(transform.position, 0.1f, Vector2.zero, 0f, enemyLayer); // TODO: Change enemyLayer to be set by WarMonger>WarFighter>CrewMember
+        membersHit = Physics2D.CircleCastAll(transform.position, 0.1f, Vector2.zero, 0.1f, enemyLayer); 
+        // TODO: Change enemyLayer to be set by WarMonger>WarFighter>CrewMember
 
         if (membersHit.Length == 0) return;
 
@@ -48,5 +45,7 @@ public class Projectile : MonoBehaviour
                     damageableHit.TakeDamage(damage);
             }
         }
+
+        Destroy(gameObject, 0.1f);
     }
 }

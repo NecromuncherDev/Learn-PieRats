@@ -19,8 +19,11 @@ public class Collectible : MonoBehaviour, ISpawnable
 
     private void FixedUpdate()
     {
-        if (Vector2.Distance(liveTarget.position, transform.position) > liveDistance)
-            Destroy(gameObject);
+        if (liveTarget != null)
+        {
+            if (Vector2.Distance(liveTarget.position, transform.position) > liveDistance)
+                Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

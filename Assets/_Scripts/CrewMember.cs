@@ -8,17 +8,14 @@ public class CrewMember : MonoBehaviour, IDamageable
     public uint maxHP { get => _maxHP; set => _maxHP = value; }
     public uint curHP { get => _curHP; set => _curHP = (uint)Mathf.Min(value, maxHP); }
 
-    [SerializeField] private float attackInterval;
     [SerializeField] private float throwSpeed;
 
     private Projectile ammoPrefab;
-    private Vector2 target;
-    private bool attacking = false;
-    private Coroutine attackCoroutine;
     private uint _maxHP, _curHP;
 
-    internal void Init(Projectile ammo)
+    internal void Init(Projectile ammo, uint memberHP)
     {
+        maxHP = memberHP;
         curHP = maxHP;
         ammoPrefab = ammo;
     }

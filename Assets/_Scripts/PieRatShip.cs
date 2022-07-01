@@ -8,10 +8,13 @@ using UnityEngine;
 [RequireComponent(typeof(WarFighter))]
 public class PieRatShip : MonoBehaviour
 {
+    [Header("Ammunition")]
     [SerializeField] protected uint startingAmmo;
-    [SerializeField] protected uint startingCrew;
-
     [SerializeField] private Projectile ammoPrefab;
+
+    [Header("Crew")]
+    [SerializeField] protected uint startingCrew;
+    [SerializeField] protected uint crewMemberHP;
     [SerializeField] private CrewMember crewPrefab;
     [SerializeField] private float barrageInterval;
 
@@ -119,8 +122,9 @@ public class PieRatShip : MonoBehaviour
                                             transform.position + offset, 
                                             Quaternion.identity, 
                                             transform);
-            member.Init(ammoPrefab);
+            member.Init(ammoPrefab, crewMemberHP);
             member.OnDefeated += RemoveCrewMember;
+            member.gameObject.layer = gameObject.layer;
             members.Add(member);
         }
     }
@@ -131,6 +135,7 @@ public class PieRatShip : MonoBehaviour
         {
             member.GetComponent<CrewMember>().OnDefeated -= RemoveCrewMember;
             members.Remove(member.GetComponent<CrewMember>());
+            Destroy(member);
         }
     }
 
@@ -142,6 +147,6 @@ public class PieRatShip : MonoBehaviour
         //    Destroy(member.gameObject);
         //}
 
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 }

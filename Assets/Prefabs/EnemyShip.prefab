@@ -78,8 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAmmo: 10
-  startingCrew: 5
   ammoPrefab: {fileID: 3291313340728398885, guid: f14a8e6bea303cb499136c544e603468, type: 3}
+  startingCrew: 10
+  crewMemberHP: 1
   crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
   barrageInterval: 2.5
   startingAmmoVariation: 25

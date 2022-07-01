@@ -561,8 +561,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingAmmo: 10
-  startingCrew: 1
   ammoPrefab: {fileID: 3291313340728398885, guid: 96a709558fb322e4c8c9c8e6881682c8, type: 3}
+  startingCrew: 1
+  crewMemberHP: 1
   crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
   barrageInterval: 2
 --- !u!114 &610464384
