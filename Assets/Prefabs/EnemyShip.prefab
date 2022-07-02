@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b337666db295d74499c22544ebf906e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAmmo: 10
+  startingAmmo: 150
   ammoPrefab: {fileID: 3291313340728398885, guid: f14a8e6bea303cb499136c544e603468, type: 3}
   startingCrew: 10
   crewMemberHP: 1

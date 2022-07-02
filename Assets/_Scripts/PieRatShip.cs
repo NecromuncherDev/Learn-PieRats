@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ using UnityEngine;
 [RequireComponent(typeof(WarFighter))]
 public class PieRatShip : MonoBehaviour
 {
+    public event Action OnLose;
+
     [Header("Ammunition")]
     [SerializeField] protected uint startingAmmo;
     [SerializeField] private Projectile ammoPrefab;
@@ -65,9 +68,14 @@ public class PieRatShip : MonoBehaviour
 
         PieRatShip enemy;
         if (monger.gameObject.TryGetComponent<PieRatShip>(out enemy))
-            AttackOnce(enemy);
+        {
+            enemy.OnLose += StopWar;
+            StartAttacking(enemy);
+        }
         else
+        {
             StopWar();
+        }
     }
 
     private void StopWar()
@@ -109,14 +117,14 @@ public class PieRatShip : MonoBehaviour
 
     internal Vector2 GetRandomCrewMember()
     {
-        return members[Random.Range(0, members.Count)].transform.position;
+        return members[UnityEngine.Random.Range(0, members.Count)].transform.position;
     }
 
     internal void ModifyCrew(int newSize)
     {
         while (newSize > members.Count)
         {
-            Vector3 offset = new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
+            Vector3 offset = new Vector2(UnityEngine.Random.Range(-0.2f, 0.2f), UnityEngine.Random.Range(-0.2f, 0.2f));
 
             CrewMember member = Instantiate(crewPrefab, 
                                             transform.position + offset, 
@@ -141,12 +149,7 @@ public class PieRatShip : MonoBehaviour
 
     private void Lose()
     {
-        //foreach (CrewMember member in members)
-        //{
-        //    members.Remove(member);
-        //    Destroy(member.gameObject);
-        //}
-
+        OnLose?.Invoke();
         Destroy(gameObject, 2f);
     }
 }
