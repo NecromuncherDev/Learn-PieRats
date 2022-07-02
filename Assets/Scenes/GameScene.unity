@@ -603,6 +603,7 @@ GameObject:
   - component: {fileID: 1471462100}
   - component: {fileID: 1471462101}
   - component: {fileID: 1471462102}
+  - component: {fileID: 1471462103}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -692,3 +693,16 @@ MonoBehaviour:
   spawnInterval: 5
   spawnables:
   - {fileID: 3225275813037930587, guid: 0b8d66a08c654254e9aeb624dfc6bdd7, type: 3}
+--- !u!114 &1471462103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471462097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40d4645130a729441bd3e150b6d0ae4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 610464383}
