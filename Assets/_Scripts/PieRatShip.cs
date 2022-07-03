@@ -10,6 +10,8 @@ using UnityEngine;
 public class PieRatShip : MonoBehaviour
 {
     public event Action OnLose;
+    public event Action<uint> OnCrewChanged;
+    public event Action<uint> OnAmmoChanged;
 
     [Header("Ammunition")]
     [SerializeField] protected uint startingAmmo;
@@ -52,8 +54,10 @@ public class PieRatShip : MonoBehaviour
     {
         crew.OnStockValueChanged += ModifyCrew;
         crew.OnStockEmpty += Lose;
+        ammo.OnStockValueChanged += ModifyAmmo;
         fighter.OnJoinedWar += StartWar;
     }
+
 
     private void OnDisable()
     {
@@ -112,7 +116,8 @@ public class PieRatShip : MonoBehaviour
     private void StopAttacking()
     {
         attacking = false;
-        StopCoroutine(attackCoroutine);
+        if (attackCoroutine != null)
+            StopCoroutine(attackCoroutine);
     }
 
     internal Vector2 GetRandomCrewMember()
@@ -135,7 +140,10 @@ public class PieRatShip : MonoBehaviour
             member.gameObject.layer = gameObject.layer;
             members.Add(member);
         }
+
+        OnCrewChanged?.Invoke((uint)members.Count);
     }
+
 
     private void RemoveCrewMember(GameObject member)
     {
@@ -145,6 +153,13 @@ public class PieRatShip : MonoBehaviour
             members.Remove(member.GetComponent<CrewMember>());
             Destroy(member);
         }
+
+        OnCrewChanged?.Invoke((uint)members.Count);
+    }
+
+    private void ModifyAmmo(int newAmount)
+    {
+        OnAmmoChanged?.Invoke((uint)newAmount);
     }
 
     private void Lose()

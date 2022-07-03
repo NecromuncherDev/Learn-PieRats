@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] private PieRatShip player;
+    internal event Action OnEndGame;
+    
+    [SerializeField] internal PieRatShip player;
 
     private void OnEnable()
     {
@@ -19,6 +21,6 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        print("You lose");
+        OnEndGame?.Invoke();
     }
 }

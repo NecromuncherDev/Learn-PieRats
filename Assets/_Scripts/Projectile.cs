@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
     {
         RaycastHit2D[] membersHit;
         membersHit = Physics2D.CircleCastAll(transform.position, 0.1f, Vector2.zero, 0.1f, enemyLayer); 
-        // TODO: Change enemyLayer to be set by WarMonger>WarFighter>CrewMember
+        // TODO: Change enemyLayer to be set by WarMonger -> WarFighter -> CrewMember
 
         if (membersHit.Length == 0) return;
 
@@ -46,6 +46,6 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject);
     }
 }

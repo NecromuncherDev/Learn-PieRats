@@ -82,7 +82,7 @@ MonoBehaviour:
   startingCrew: 10
   crewMemberHP: 1
   crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
-  barrageInterval: 2.5
+  barrageInterval: 3.5
   startingAmmoVariation: 25
   startingCrewVariation: 50
 --- !u!114 &1733242123379238028
