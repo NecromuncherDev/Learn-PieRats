@@ -81,7 +81,7 @@ MonoBehaviour:
   ammoPrefab: {fileID: 3291313340728398885, guid: f14a8e6bea303cb499136c544e603468, type: 3}
   startingCrew: 10
   crewMemberHP: 1
-  crewPrefab: {fileID: 6598628790210951430, guid: 3b3520705b229a540b064a84d733e41e, type: 3}
+  crewPrefab: {fileID: 6598628790210951430, guid: 3e3917d102fc5484e91f3791f1f9e595, type: 3}
   barrageInterval: 3.5
   startingAmmoVariation: 25
   startingCrewVariation: 50
@@ -223,8 +223,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1386311615
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

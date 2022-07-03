@@ -38,11 +38,11 @@ public class PieRatShip : MonoBehaviour
         TryGetComponent<Traveler>(out traveler);
         TryGetComponent<WarFighter>(out fighter);
     }
-
-    private void Start()
-    {
-        Initialize();
-    }
+    
+    //private void Start()
+    //{ 
+    //    Initialize();
+    //}
 
     protected virtual void Initialize()
     {
@@ -56,6 +56,8 @@ public class PieRatShip : MonoBehaviour
         crew.OnStockEmpty += Lose;
         ammo.OnStockValueChanged += ModifyAmmo;
         fighter.OnJoinedWar += StartWar;
+
+        Initialize();
     }
 
 
